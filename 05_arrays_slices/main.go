@@ -21,5 +21,9 @@ func main() {
 	fruitSlice := []string{"Apple", "Orange", "Grape", "Cherry"}
 
 	fmt.Println(len(fruitSlice))
-	fmt.Println(fruitSlice[1:3])
+	fmt.Println(fruitSlice[:])   // make a copy of fruitSlice
+	fmt.Println(fruitSlice[1:3]) // make a copy of fruitSlice from index 1 to 3(excluded)
+
+	fruitSlice = append(fruitSlice, "Pear")
+	fmt.Println(fruitSlice)
 }

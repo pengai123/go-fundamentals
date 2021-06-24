@@ -5,11 +5,6 @@ import (
 	"math"
 )
 
-// Define interface
-type Shape interface {
-	area() float64
-}
-
 type Circle struct {
 	x, y, radius float64
 }
@@ -26,7 +21,7 @@ func (r Rectangle) area() float64 {
 	return r.width * r.height
 }
 
-func getArea(s Shape) float64 {
+func getArea(s interface{ area() float64 }) float64 {
 	return s.area()
 }
 
@@ -36,6 +31,24 @@ func main() {
 
 	fmt.Printf("Circle Area: %f\n", getArea(circle))
 	fmt.Printf("Rectangle Area: %f\n", getArea(rectangle))
-	// fmt.Printf("Circle Area: %v\n", circle.area())
-	// fmt.Printf("Rectangle Area: %v\n", rectangle.area())
+	fmt.Printf("Circle Area: %v\n", circle.area())
+	fmt.Printf("Rectangle Area: %v\n", rectangle.area())
+
+	//empty object
+	obj := map[string]interface{}{}
+	fmt.Println(obj)
+	obj["aa"] = "string"
+	fmt.Println(obj)
+	obj["bb"] = 199.7735
+	fmt.Println(obj)
+	delete(obj, "aa")
+	fmt.Println(obj)
+
+	obj2 := map[string]interface{}{"xx": "xxx"}
+
+	//merge 2 objs
+	for k, v := range obj2 {
+		obj[k] = v
+	}
+	fmt.Println(obj)
 }
